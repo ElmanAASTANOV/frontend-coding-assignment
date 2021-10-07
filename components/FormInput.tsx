@@ -1,4 +1,5 @@
-import {memo} from "react"; 
+import {memo, useEffect} from 'react';
+// import scheduler from "scheduler";
 type Props = {
   id: string,
   label: string,
@@ -6,13 +7,13 @@ type Props = {
   errorMessage?: string,
 }
 
-function wait(milliseconds: number) {
-  const start = new Date().getTime();
-  while (new Date().getTime() - start < milliseconds) {}
-}
 export default memo(function FormInput({id, label, errorMessage, onInput}: Props) {
-  // This component is a bit slow to render...
-  wait(50);
+
+  useEffect(() => {
+    let worker = new Worker('task.js');
+    worker.postMessage({milliseconds: 5000})
+  }, [])
+
 
   return (
     <div className="flex items-center">
