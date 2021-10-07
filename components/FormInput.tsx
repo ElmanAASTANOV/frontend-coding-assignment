@@ -1,3 +1,4 @@
+import {memo} from "react"; 
 type Props = {
   id: string,
   label: string,
@@ -9,9 +10,9 @@ function wait(milliseconds: number) {
   const start = new Date().getTime();
   while (new Date().getTime() - start < milliseconds) {}
 }
-export default function FormInput({id, label, errorMessage, onInput}: Props) {
+export default memo(function FormInput({id, label, errorMessage, onInput}: Props) {
   // This component is a bit slow to render...
-  wait(25);
+  wait(50);
 
   return (
     <div className="flex items-center">
@@ -28,4 +29,4 @@ export default function FormInput({id, label, errorMessage, onInput}: Props) {
       </div>
     </div>
   );
-}
+})
