@@ -6,7 +6,7 @@ import { performSearch } from "../api/search";
 
 export default function Search() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string | string[]>("");
   const [value] = useDebounce(query, 250);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
@@ -15,7 +15,7 @@ export default function Search() {
     if (!searchQuery) {
       return;
     }
-    setQuery(searchQuery as string);
+    setQuery(searchQuery);
   }, [searchQuery]);
 
   useEffect(() => {
