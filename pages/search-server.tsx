@@ -18,13 +18,13 @@ export default function Search({searchQuery, searchResults, errorMessage}) {
 
 export async function getServerSideProps(context) {
   const searchQuery = context.query.search ?? "";
-  let result;
+  let result: SearchResult[] = [];
   let errorMessage = null;
   try{
-     result = (await performSearch(searchQuery as string)).data as SearchResult[] ?? [];
+     result = (await performSearch(searchQuery as string)).data ?? [];
   } 
   catch(error){
-    errorMessage = "Opps!!! Something went wrong."
+    errorMessage = "Opps!!! Something went wrong." + error
   }
   
   
