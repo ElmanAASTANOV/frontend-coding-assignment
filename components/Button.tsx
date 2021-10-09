@@ -4,11 +4,13 @@ interface buttonType {
   color: { default: string; hover: string; active: string };
   size: "small" | "regular" | "large";
   type: "regular" | "outline";
+  children: React.ReactNode;
 };
 export default function Button({
   color = Blue,
   size = "regular",
   type = "regular",
+  children
 }: buttonType) {
 
   let _size;
@@ -55,7 +57,7 @@ export default function Button({
         <button
           className={`bg-[${color.default}] hover:bg-[${color.hover}] active:bg-[${color.active}] px-${_size.px} py-${_size.py} rounded ${_size.text} text-white`}
         >
-          Click me
+          {children}
         </button>
       );
   }
