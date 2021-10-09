@@ -1,34 +1,15 @@
 import React from "react";
 
 interface buttonType {
-  color: "blue" | "red" | { default: string; hover: string; active: string };
+  color: { default: string; hover: string; active: string };
   size: "small" | "regular" | "large";
   type: "regular" | "outline";
 };
 export default function Button({
-  color = "blue",
+  color = Blue,
   size = "regular",
   type = "regular",
 }: buttonType) {
-  let _color;
-  switch (color) {
-    case "red":
-      _color = {
-        default: "#FF0054",
-        hover: "#E6003B",
-        active: "#CC0021",
-      };
-      break;
-    case "blue":
-      _color = {
-        default: "#0A344F",
-        hover: "#001B36",
-        active: "#0A344F",
-      };
-      break;
-    default:
-      _color = color;
-  }
 
   let _size;
   switch (size) {
@@ -60,9 +41,9 @@ export default function Button({
   let generatedButton;
   switch (type) {
     case "outline":
-      generatedButton= (
+      generatedButton = (
         <button
-          className={`bg-transparent border border-[${_color.default}] hover:border-[${_color.hover}] active:border-[${_color.active}] px-${_size.px} py-${_size.py} rounded text text-[${_color.default}]`}
+          className={`bg-transparent border border-[${color.default}] hover:border-[${color.hover}] active:border-[${color.active}] px-${_size.px} py-${_size.py} rounded text text-[${color.default}]`}
         >
           Click me
         </button>
@@ -72,11 +53,23 @@ export default function Button({
     default:
       generatedButton = (
         <button
-          className={`bg-[${_color.default}] hover:bg-[${_color.hover}] active:bg-[${_color.active}] px-${_size.px} py-${_size.py} rounded ${_size.text} text-white`}
+          className={`bg-[${color.default}] hover:bg-[${color.hover}] active:bg-[${color.active}] px-${_size.px} py-${_size.py} rounded ${_size.text} text-white`}
         >
           Click me
         </button>
       );
   }
   return generatedButton;
+}
+
+export const Red = {
+  default: "#FF0054",
+  hover: "#E6003B",
+  active: "#CC0021",
+}
+
+export const Blue = {
+  default: "#0A344F",
+  hover: "#001B36",
+  active: "#0A344F",
 }
