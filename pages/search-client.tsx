@@ -4,10 +4,12 @@ import { useDebounce } from 'use-debounce';
 import { SearchResult } from "../types/types";
 import { performSearch } from "../api/search";
 
+type SearchType = string | string[];
+
 export default function Search() {
   const router = useRouter();
-  const [query, setQuery] = useState<string | string[]>("");
-  const [value] = useDebounce(query, 250);
+  const [query, setQuery] = useState<SearchType>("");
+  const [value] = useDebounce<SearchType>(query, 250);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   const searchQuery = router.query.search;
